@@ -34,7 +34,6 @@ env:
   PRODUCT_NAME: ARMv8_ROOTFS
 
 jobs:
-  buijobs:
   build:
     runs-on: ubuntu-22.04
     if: ${{ github.event.repository.owner.id }} == ${{ github.event.sender.id }}
