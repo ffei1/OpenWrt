@@ -225,7 +225,7 @@ jobs:
         allowUpdates: true
         tag: ${{ env.FILE_NAME }}
         commit: main
-        token: ${{ secrets.RELEASES_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         body: |
           - 此为精简自用底包，非完整固件，每日自动编译
           - 默认IP：192.168.1.1 默认密码：password
@@ -252,11 +252,3 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Telegram notification
-      run: |
-        MSG="
-        编译时间：${{ env.DATE }}
-        OpenWrt 更新信息：${{ env.useVersionInfo }}
-        ${{ env.PRODUCT_NAME }} 编译完成
-        "
-        curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage" -d "chat_id=${{ secrets.TELEGRAM_TO }}&text=${MSG}"
